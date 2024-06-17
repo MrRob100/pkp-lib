@@ -226,7 +226,7 @@ class UserGroupForm extends Form
                 $stageAssignments = StageAssignment::withUserGroupId($userGroupId)
                     ->withContextId($this->getContextId())
                     ->get();
-                
+
                 foreach ($stageAssignments as $stageAssignment) {
                     $stageAssignment->update(['canChangeMetadata' => $permitMetadataEdit]);
                 }

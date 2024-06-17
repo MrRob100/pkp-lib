@@ -8,7 +8,7 @@
  * @class VueModalHandler
  * @ingroup js_controllers_modal
  *
- * @brief A modal that opens native Vue.js component. 
+ * @brief A modal that opens native Vue.js component.
  * It needs to be added in ModalManager to be available.
  */
 (function($) {
@@ -33,7 +33,7 @@
 
 	};
 	$.pkp.classes.Helper.inherits($.pkp.controllers.modal.VueModalHandler,
-			$.pkp.controllers.modal.ModalHandler);
+		$.pkp.controllers.modal.ModalHandler);
 
 
 	//
@@ -41,24 +41,24 @@
 	//
 	/** @inheritDoc */
 	$.pkp.controllers.modal.VueModalHandler.prototype.checkOptions =
-			function(options) {
-		// Check the mandatory options of the ModalHandler handler.
-		if (!this.parent('checkOptions', options)) {
-			return false;
-		}
+		function(options) {
+			// Check the mandatory options of the ModalHandler handler.
+			if (!this.parent('checkOptions', options)) {
+				return false;
+			}
 
-		// Check for our own mandatory options.
-		return typeof options.component === 'string';
-	};
+			// Check for our own mandatory options.
+			return typeof options.component === 'string';
+		};
 
 
 	/** @inheritDoc */
 	$.pkp.controllers.modal.VueModalHandler.prototype.mergeOptions =
-			function(options) {
+		function(options) {
 
-		// Call parent.
-		return /** @type {Object} */ (this.parent('mergeOptions', options));
-	};
+			// Call parent.
+			return /** @type {Object} */ (this.parent('mergeOptions', options));
+		};
 
 
 	/**
@@ -68,16 +68,16 @@
 	 * @protected
 	 */
 	$.pkp.controllers.modal.VueModalHandler.prototype.modalOpen =
-			function($handledElement) {
-		this.parent('modalOpen', $handledElement);
-		// Retrieve remote modal content.
-		pkp.eventBus.$emit('open-modal-vue', {
-			component: this.options.component,
-			modalId: this.uniqueModalId,
-			// passing modalHandler to be able to bridge events
-			options: Object.assign({}, this.options, {modalHandler: this})
-		});
-	};
+		function($handledElement) {
+			this.parent('modalOpen', $handledElement);
+			// Retrieve remote modal content.
+			pkp.eventBus.$emit('open-modal-vue', {
+				component: this.options.component,
+				modalId: this.uniqueModalId,
+				// passing modalHandler to be able to bridge events
+				options: Object.assign({}, this.options, {modalHandler: this})
+			});
+		};
 
 
 

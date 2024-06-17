@@ -246,10 +246,10 @@ abstract class PKPManageFileApiHandler extends Handler
 
                 foreach ($submitterAssignments as $submitterAssignment) {
                     $notificationDao->deleteByAssoc(
-                        Application::ASSOC_TYPE_SUBMISSION, 
-                        $submission->getId(), 
-                        $submitterAssignment->userId, 
-                        PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS, 
+                        Application::ASSOC_TYPE_SUBMISSION,
+                        $submission->getId(),
+                        $submitterAssignment->userId,
+                        PKPNotification::NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS,
                         $context->getId()
                     );
                 }

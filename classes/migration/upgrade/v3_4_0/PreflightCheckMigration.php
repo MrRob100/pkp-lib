@@ -229,6 +229,7 @@ abstract class PreflightCheckMigration extends \PKP\migration\Migration
 
     /**
      * Ensures that contexts with section editor assignments have a section editor role
+     *
      * @see classes\migration\upgrade\v3_4_0\I7191_EditorAssignments.php
      *
      * @throws Exception
@@ -238,14 +239,16 @@ abstract class PreflightCheckMigration extends \PKP\migration\Migration
         $contextId = "c.{$this->getContextKeyField()}";
         // Look for contexts that have section editor assignments, but no section editor role
         $contextsWithoutSubEditor = DB::table($this->getContextTable(), 'c')
-            ->whereNotExists(fn (Builder $q) => $q->from('user_groups', 'ug')
-                ->whereColumn('ug.context_id', '=', $contextId)
-                ->where('ug.role_id', '=', 17) // Role::ROLE_ID_SUB_EDITOR
-                ->selectRaw('0')
+            ->whereNotExists(
+                fn (Builder $q) => $q->from('user_groups', 'ug')
+                    ->whereColumn('ug.context_id', '=', $contextId)
+                    ->where('ug.role_id', '=', 17) // Role::ROLE_ID_SUB_EDITOR
+                    ->selectRaw('0')
             )
-            ->whereExists(fn (Builder $q) => $q->from('subeditor_submission_group', 'ssg')
-                ->whereColumn('ssg.context_id', '=', $contextId)
-                ->selectRaw('0')
+            ->whereExists(
+                fn (Builder $q) => $q->from('subeditor_submission_group', 'ssg')
+                    ->whereColumn('ssg.context_id', '=', $contextId)
+                    ->selectRaw('0')
             )
             ->pluck('c.path');
         if ($contextsWithoutSubEditor->count()) {

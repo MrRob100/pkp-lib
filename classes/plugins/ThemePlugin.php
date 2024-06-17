@@ -591,7 +591,7 @@ abstract class ThemePlugin extends LazyLoadPlugin
             // If the value isn't null and it's a multilingual field, then we must ensure it's an array
             if ($optionConfig->isMultilingual && $value !== null && !is_array($value)) {
                 try {
-                    $value =  json_decode((string) $value, true, flags: JSON_THROW_ON_ERROR);
+                    $value = json_decode((string) $value, true, flags: JSON_THROW_ON_ERROR);
                 } catch (Exception) {
                     // FIXME: pkp/pkp-lib#6250 Remove after 3.3.x upgrade code is removed (see also pkp/pkp-lib#5772)
                     $value = unserialize($value);

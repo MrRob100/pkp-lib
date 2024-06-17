@@ -769,7 +769,7 @@ abstract class PKPSubmissionHandler extends Handler
     protected function getWorkflowUrl(Submission $submission, User $user): string
     {
         $request = Application::get()->getRequest();
-        
+
         // Replaces StageAssignmentDAO::getBySubmissionAndRoleIds
         $hasStageAssignments = StageAssignment::withSubmissionIds([$submission->getId()])
             ->withRoleIds([Role::ROLE_ID_AUTHOR])

@@ -17,8 +17,8 @@
 
 namespace PKP\core;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizer;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig;
 use Symfony\Component\HtmlSanitizer\Reference\W3CReference;
@@ -27,7 +27,7 @@ class PKPHtmlSanitizer
 {
     /**
      * Collection of valid element specify by W3C Sanitizer API
-     * 
+     *
      * @see const HEAD_ELEMENTS and BODY_ELEMENTS at \Symfony\Component\HtmlSanitizer\Reference\W3CReference
      * @see https://wicg.github.io/sanitizer-api/#default-configuration
      */
@@ -45,7 +45,7 @@ class PKPHtmlSanitizer
 
     /**
      * Create a new instance
-     * 
+     *
      * @param string $allowable String of allowed tags with attribites generated in same
      *                          structure as the security.[allowed_html/allowed_title_html]
      */
@@ -68,7 +68,7 @@ class PKPHtmlSanitizer
      * Sanitize the given html string
      */
     public function sanitize(string $html): string
-    {   
+    {
         return $this->htmlSanitizer->sanitize(
             /**
              * Here we are removing any html tags that should not be handled by sanitizer
@@ -81,8 +81,8 @@ class PKPHtmlSanitizer
 
     /**
      * Build up the \Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig instance
-     * 
-     * @param Collection $allowedTagToAttributeMap  See the @return docblock for 
+     *
+     * @param Collection $allowedTagToAttributeMap  See the @return docblock for
      *                                              PKPHtmlSanitizer::generateAllowedTagToAttributeMap()
      */
     protected function buildSanitizerConfig(Collection $allowedTagToAttributeMap): HtmlSanitizerConfig
@@ -90,7 +90,7 @@ class PKPHtmlSanitizer
         $this->htmlSanitizerConfig = (new HtmlSanitizerConfig())
             ->allowLinkSchemes(['https', 'http', 'mailto'])
             ->allowMediaSchemes(['https', 'http']);
-        
+
         if ($allowedTagToAttributeMap->count()) {
             $allowedTagToAttributeMap->each(
                 fn (array $attributes, string $tag) => $this->htmlSanitizerConfig = $this->htmlSanitizerConfig->allowElement($tag, $attributes)
@@ -129,15 +129,15 @@ class PKPHtmlSanitizer
 
     /**
      * Generate the collection of allowed tags to allowed attributes map as key/value[array] structure
-     * 
+     *
      * @param   string $allowable   Allowded tag to attribute map as the
-     *                              structure define in config keys such as 
+     *                              structure define in config keys such as
      *                              security.[allowed_html/allowed_title_html]
-     *                              
+     *
      * @return  Collection          Collection of allowed tags to allowed attributes map as key/value.
-     *                              In collection each tag will be mapped to an array that may 
+     *                              In collection each tag will be mapped to an array that may
      *                              contain allowed attributes or it can be empty which define that
-     *                              no attribute is allowed for that tag, structure such as 
+     *                              no attribute is allowed for that tag, structure such as
      *                              [
      *                                  HTML_TAG_1 => [ALLOWED_ATTRIBUTE_FOR_HTML_TAG_1, ...],
      *                                  HTML_TAG_2 => [],
@@ -148,8 +148,8 @@ class PKPHtmlSanitizer
     {
         return Str::of($allowable)
             ->explode(',')
-            ->mapWithKeys(function(string $allowedTagWithAttr) {
-                
+            ->mapWithKeys(function (string $allowedTagWithAttr) {
+
                 // Extract the tag itself (e.g. div, p, a ...)
                 preg_match('/\[[^][]+]\K|\w+/', $allowedTagWithAttr, $matches);
                 $allowedTag = collect($matches)->first();
@@ -166,7 +166,7 @@ class PKPHtmlSanitizer
                             ->toArray()
                     ];
                 }
-        
+
                 return [];
             });
     }

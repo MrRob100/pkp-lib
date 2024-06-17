@@ -275,10 +275,10 @@ class AddParticipantForm extends PKPStageParticipantNotifyForm
                 // insert the assignment
                 $stageAssignment = Repo::stageAssignment()
                     ->build(
-                        $submission->getId(), 
-                        $userGroup->getId(), 
-                        $userId, 
-                        $recommendOnly, 
+                        $submission->getId(),
+                        $userGroup->getId(),
+                        $userId,
+                        $recommendOnly,
                         $canChangeMetadata
                     );
             }

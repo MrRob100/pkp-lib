@@ -25,11 +25,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Route;
-use PKP\core\PKPBaseController;
-use PKP\core\PKPRequest;
 use PKP\announcement\Collector;
 use PKP\context\Context;
 use PKP\core\exceptions\StoreTemporaryFileException;
+use PKP\core\PKPBaseController;
+use PKP\core\PKPRequest;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\jobs\notifications\NewAnnouncementNotifyUsers;
@@ -327,7 +327,7 @@ class PKPAnnouncementController extends PKPBaseController
      */
     protected function getSiteRoleAssignments(array $roleAssignments): array
     {
-        return array_filter($roleAssignments, fn($key) => $key == Role::ROLE_ID_SITE_ADMIN, ARRAY_FILTER_USE_KEY);
+        return array_filter($roleAssignments, fn ($key) => $key == Role::ROLE_ID_SITE_ADMIN, ARRAY_FILTER_USE_KEY);
     }
 
     /**

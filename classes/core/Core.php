@@ -160,7 +160,7 @@ class Core
     public static function getLocalization(string $urlInfo): string
     {
         $locale = self::_getUrlComponents($urlInfo, 0);
-        return Locale::isLocaleValid($locale) ? $locale : "";
+        return Locale::isLocaleValid($locale) ? $locale : '';
     }
 
     /**

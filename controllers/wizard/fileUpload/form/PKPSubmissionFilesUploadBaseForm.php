@@ -84,7 +84,7 @@ class PKPSubmissionFilesUploadBaseForm extends Form
         $this->_stageId = $stageId;
 
         if ($reviewRound) {
-            $this->_reviewRound = & $reviewRound;
+            $this->_reviewRound = &$reviewRound;
         } elseif ($assocType == Application::ASSOC_TYPE_REVIEW_ASSIGNMENT && !$reviewRound) {
             // Get the review assignment object.
             $reviewAssignment = Repo::reviewAssignment()->get((int) $assocId);
@@ -261,7 +261,7 @@ class PKPSubmissionFilesUploadBaseForm extends Form
                 ->withStageIds([$this->getStageId()])
                 ->withUserId($user->getId())
                 ->exists();
-                
+
             if (
                 ($submissionFile->getFileStage() == SubmissionFile::SUBMISSION_FILE_REVIEW_ATTACHMENT || $submissionFile->getFileStage() == SubmissionFile::SUBMISSION_FILE_REVIEW_FILE) &&
                 $hasAnyAssignments

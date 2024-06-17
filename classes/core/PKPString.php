@@ -18,8 +18,6 @@
 namespace PKP\core;
 
 use PKP\config\Config;
-use Symfony\Component\HtmlSanitizer\HtmlSanitizer;
-use Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig;
 
 class PKPString
 {
@@ -169,13 +167,13 @@ class PKPString
         }
 
         static $caches;
-    
+
         if (!isset($caches[$configKey])) {
             $caches[$configKey] = new \PKP\core\PKPHtmlSanitizer(
                 Config::getVar('security', $configKey)
             );
         }
-    
+
         return $caches[$configKey]->sanitize($input);
     }
 

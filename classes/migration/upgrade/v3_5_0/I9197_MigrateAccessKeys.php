@@ -19,8 +19,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use PKP\install\DowngradeNotSupportedException;
-use PKP\invitation\invitations\ReviewerAccessInvite;
 use PKP\invitation\invitations\RegistrationAccessInvite;
+use PKP\invitation\invitations\ReviewerAccessInvite;
 use PKP\migration\Migration;
 
 class I9197_MigrateAccessKeys extends Migration
@@ -93,7 +93,7 @@ class I9197_MigrateAccessKeys extends Migration
             } elseif (isset($accessKey->context)) { // Reviewer Invitation
                 $invitation = new ReviewerAccessInvite();
                 $invitation->initialize($accessKey->user_id, $accessKey->context, null);
-                
+
                 $invitation->reviewAssignmentId = $accessKey->assoc_id;
                 $invitation->updatePayload();
             }

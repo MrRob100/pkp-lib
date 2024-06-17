@@ -19,9 +19,9 @@ namespace PKP\core;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\file\PublicFileManager;
+use Illuminate\Contracts\Session\Session;
 use PKP\config\Config;
 use PKP\context\Context;
-use PKP\core\PKPSessionGuard;
 use PKP\db\DAORegistry;
 use PKP\handler\APIHandler;
 use PKP\plugins\Hook;
@@ -29,7 +29,6 @@ use PKP\security\Validation;
 use PKP\site\Site;
 use PKP\site\SiteDAO;
 use PKP\user\User;
-use Illuminate\Contracts\Session\Session;
 
 class PKPRequest
 {
@@ -131,7 +130,7 @@ class PKPRequest
         Application::get()->getRequest()->getSessionGuard()->sendCookies();
 
         header("Location: {$url}");
-        
+
         exit;
     }
 

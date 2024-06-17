@@ -34,7 +34,8 @@ class InvitationsMigration extends \PKP\migration\Migration
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->index(['user_id'], 'invitations_user_id');
 
-            $table->datetime('expiry_date')->nullable();;
+            $table->datetime('expiry_date')->nullable();
+            ;
             $table->json('payload')->nullable();
 
             $table->enum(

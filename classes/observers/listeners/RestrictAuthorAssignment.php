@@ -44,7 +44,7 @@ class RestrictAuthorAssignment
             if (!$userGroup) {
                 continue;
             }
-            
+
             $stageAssignment->canChangeMetadata = $userGroup->getPermitMetadataEdit();
             $stageAssignment->save();
         }

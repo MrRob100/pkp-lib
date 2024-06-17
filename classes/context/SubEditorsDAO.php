@@ -218,9 +218,9 @@ class SubEditorsDAO extends \PKP\db\DAO
             $userGroup = $userGroups->first(fn (UserGroup $userGroup) => $userGroup->getId() == $assignment->userGroupId);
             Repo::stageAssignment()
                 ->build(
-                    $submission->getId(), 
-                    $assignment->userGroupId, 
-                    $assignment->userId, 
+                    $submission->getId(),
+                    $assignment->userGroupId,
+                    $assignment->userId,
                     $userGroup->getRecommendOnly()
                 );
         }

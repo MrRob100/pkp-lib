@@ -21,7 +21,6 @@ use APP\handler\Handler;
 use APP\template\TemplateManager;
 use PKP\core\JSONMessage;
 use PKP\core\PKPRequest;
-use PKP\facades\Locale;
 use PKP\security\Validation;
 use PKP\user\InterestManager;
 

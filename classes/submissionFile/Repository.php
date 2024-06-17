@@ -858,8 +858,7 @@ abstract class Repository
     public function versionSubmissionFile(
         SubmissionFile $submissionFile,
         Publication $newPublication
-    ): SubmissionFile
-    {
+    ): SubmissionFile {
         $newSubmissionFile = clone $submissionFile;
 
         $oldFileId = $submissionFile->getData('fileId');
@@ -902,7 +901,7 @@ abstract class Repository
      */
     public function getSubmissionFileContent(SubmissionFile $submissionFile): string | false
     {
-        $fileName = Config::getVar('files', 'files_dir') . '/' . $submissionFile->getData('path') .'';
+        $fileName = Config::getVar('files', 'files_dir') . '/' . $submissionFile->getData('path') . '';
         $retValue = file_get_contents($fileName);
 
         if ($retValue === false) {

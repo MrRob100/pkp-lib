@@ -27,13 +27,7 @@ class Repository
     /**
      * Fetch a stageAssignment by symbolic info, building it if needed.
      *
-     * @param int $submissionId
-     * @param int $userGroupId
-     * @param int $userId
-     * @param bool $recommendOnly
-     * @param bool $canChangeMetadata
      *
-     * @return StageAssignment
      */
     public function build(int $submissionId, int $userGroupId, int $userId, ?bool $recommendOnly = null, ?bool $canChangeMetadata = null): StageAssignment
     {
@@ -51,7 +45,7 @@ class Repository
         return StageAssignment::withSubmissionIds([$submissionId])
             ->withUserId($userId)
             ->withUserGroupId($userGroupId)
-            ->firstOr(function() use ($submissionId, $userGroupId, $userId, $recommendOnly, $canChangeMetadata) {
+            ->firstOr(function () use ($submissionId, $userGroupId, $userId, $recommendOnly, $canChangeMetadata) {
                 return StageAssignment::create([
                     'submissionId' => $submissionId,
                     'userGroupId' => $userGroupId,

@@ -9,13 +9,11 @@
  *
  * @class RemoveExpiredInvitationsJob
  *
- *
  * @brief Job to remove all expired invitations
  */
 
 namespace PKP\jobs\invitations;
 
-use APP\facades\Repo;
 use PKP\invitation\models\InvitationModel;
 use PKP\jobs\BaseJob;
 

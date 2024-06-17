@@ -149,6 +149,7 @@ class Repository
      * @copydoc \PKP\services\entityProperties\EntityWriteInterface::add()
      *
      * @hook Author::add [[$author]]
+     * @hook Author::add::before [[$author]]
      */
     public function add(Author $author): int
     {

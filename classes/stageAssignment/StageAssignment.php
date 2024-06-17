@@ -26,7 +26,6 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 use PKP\userGroup\relationships\UserGroupStage;
 
 class StageAssignment extends Model
@@ -36,7 +35,7 @@ class StageAssignment extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'submissionId', 'userGroupId', 'userId', 
+        'submissionId', 'userGroupId', 'userId',
         'dateAssigned', 'recommendOnly', 'canChangeMetadata'
     ];
 
@@ -45,7 +44,7 @@ class StageAssignment extends Model
     /**
      * One to many relationship with user_group_stage table => UserGroupStage Eloquent Model
      *
-     * To eagerly fill the userGroupStages Collection, the calling code should add 
+     * To eagerly fill the userGroupStages Collection, the calling code should add
      * StageAssignment::with(['userGroupStages'])
      */
     public function userGroupStages(): HasMany
@@ -135,7 +134,7 @@ class StageAssignment extends Model
     // Scopes
 
     /**
-     * Scope a query to only include stage assignments that are related 
+     * Scope a query to only include stage assignments that are related
      * to userGroupStages having specific stageIds
      */
     public function scopeWithStageIds(Builder $query, ?array $stageIds): Builder
@@ -205,7 +204,7 @@ class StageAssignment extends Model
     {
         return $query->when($contextId !== null, function ($query) use ($contextId) {
             return $query->join('submissions', 'stage_assignments.submission_id', '=', 'submissions.submission_id')
-                        ->where('submissions.context_id', $contextId);
+                ->where('submissions.context_id', $contextId);
         });
     }
 }
